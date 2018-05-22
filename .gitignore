@@ -1,6 +1,8 @@
 ### Unity ###
 /[Ll]ibrary/
+Laser Defender/[Ll]ibrary/
 Laser Defender/[Tt]emp/
+/[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
@@ -23,6 +25,7 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*.vs
 
 # Unity3D generated meta files
 *.pidb.meta
