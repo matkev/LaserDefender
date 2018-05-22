@@ -7,17 +7,25 @@ public class AlienBehaviour : MonoBehaviour {
     public float projectileSpeed;
     public float firingRate;
 
+    public float shotsPerSec = 0.5f;
+
     public GameObject projectile;
 
 
     // Use this for initialization
     void Start () {
-        InvokeRepeating("Fire", 0.00001f, firingRate);
+
 
     }
 
     // Update is called once per frame
     void Update () {
+
+        float probability = Time.deltaTime * shotsPerSec;
+        if (Random.value < probability)
+        {
+            Fire();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
