@@ -6,15 +6,18 @@ public class AlienBehaviour : MonoBehaviour {
     public float health = 200f;
     public float projectileSpeed;
     public float firingRate;
+    public int scoreValue = 150;
 
     public float shotsPerSec = 0.5f;
 
     public GameObject projectile;
 
+    private ScoreKeeper scoreKeeper;
+
 
     // Use this for initialization
     void Start () {
-
+        scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
 
     }
 
@@ -39,6 +42,7 @@ public class AlienBehaviour : MonoBehaviour {
             missile.Hit();
             if (health <= 0)
             {
+                scoreKeeper.Score(scoreValue);
                 Destroy(gameObject);
             }
         }

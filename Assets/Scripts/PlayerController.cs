@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
     public float xmax = 6.5f;
 
     public GameObject projectile;
+   
+
+
 
 
     public float health = 200f;
@@ -63,6 +66,9 @@ public class PlayerController : MonoBehaviour {
             //this.transform.position += new Vector3(-speed * Time.deltaTime, 0f, 0f);
 
             transform.position += Vector3.left * speed * Time.deltaTime;
+
+
+
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
