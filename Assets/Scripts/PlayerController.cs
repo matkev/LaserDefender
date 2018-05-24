@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour {
     public float xmax = 6.5f;
 
     public GameObject projectile;
-   
+
+    public AudioClip fireSound;
 
 
 
@@ -37,6 +38,20 @@ public class PlayerController : MonoBehaviour {
     {
         GameObject laserBeam = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y + 0.675f, transform.position.z), Quaternion.identity) as GameObject;
         laserBeam.rigidbody2D.velocity = new Vector3(0, projectileSpeed, 0);
+
+        AudioSource.PlayClipAtPoint(fireSound, transform.position);
+    }
+
+    void Die()
+    {
+
+        LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+        levelManager.LoadLevel("Lose");
+
+        Destroy(gameObject);
+
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -50,8 +65,7 @@ public class PlayerController : MonoBehaviour {
             missile.Hit();
             if (health <= 0)
             {
-                Destroy(gameObject);
-            }
+                Die();            }
         }
     }
 

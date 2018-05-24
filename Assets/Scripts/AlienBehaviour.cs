@@ -12,7 +12,12 @@ public class AlienBehaviour : MonoBehaviour {
 
     public GameObject projectile;
 
+    public AudioClip fireSound;
+    public AudioClip deathSound;
+
     private ScoreKeeper scoreKeeper;
+
+    
 
 
     // Use this for initialization
@@ -42,8 +47,7 @@ public class AlienBehaviour : MonoBehaviour {
             missile.Hit();
             if (health <= 0)
             {
-                scoreKeeper.Score(scoreValue);
-                Destroy(gameObject);
+                Die();
             }
         }
     }
@@ -52,5 +56,15 @@ public class AlienBehaviour : MonoBehaviour {
     {
         GameObject laserBeam = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity) as GameObject;
         laserBeam.rigidbody2D.velocity = new Vector3(0, -projectileSpeed, 0);
+
+
+        AudioSource.PlayClipAtPoint(fireSound, transform.position);
+    }
+
+    void Die()
+    {
+        scoreKeeper.Score(scoreValue);
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        Destroy(gameObject);
     }
 }

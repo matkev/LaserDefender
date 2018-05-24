@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ScoreDisplay.cs" />
      <Compile Include="Assets\Scripts\AlienBehaviour.cs" />
      <Compile Include="Assets\Scripts\AlienSpawner.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
