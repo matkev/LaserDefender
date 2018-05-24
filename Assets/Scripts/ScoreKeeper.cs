@@ -4,23 +4,21 @@ using System.Collections;
 
 public class ScoreKeeper : MonoBehaviour {
 
-    public int score = 0;
+    public static int score = 0;
     private Text myText;
 
 
 
     public void Score(int points)
     {
-        this.score += points;
+        score += points;
         myText.text = score.ToString();
     }
 
 
-    public void Reset()
+    public static void Reset()
     {
-        this.score = 0;
-        myText.text = score.ToString();
-
+        score = 0;
     }
 
 
