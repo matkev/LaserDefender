@@ -12,14 +12,20 @@ public class PlayerController : MonoBehaviour {
     public float xmin = -6.5f;
     public float xmax = 6.5f;
 
+    public float goingLeft = 1f;
+    public float goingRight = -1f;
+    float straight = 0;
+
     public GameObject projectile;
 
     public AudioClip fireSound;
 
+    public ParticleSystem leftThruster;
+    public ParticleSystem rightThruster;
 
 
 
-    public float health = 200f;
+    public float health = 100000f;
 	// Use this for initialization
 	void Start () {
         float distance = transform.position.z - Camera.main.transform.position.z;
@@ -32,6 +38,10 @@ public class PlayerController : MonoBehaviour {
 
         xmin = leftMost.x + padding;
         xmax = rightMost.x - padding;
+
+
+
+        
 
     }
     void Fire()
@@ -72,26 +82,38 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        var foll = leftThruster.forceOverLifetime;
+        foll.enabled = true;
+
+        var folr = rightThruster.forceOverLifetime;
+        folr.enabled = true;
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //print("left arrow pressed");
-
-            //this.transform.position += new Vector3(-speed * Time.deltaTime, 0f, 0f);
-
             transform.position += Vector3.left * speed * Time.deltaTime;
 
 
+            
+            foll.x = goingLeft;
+            folr.x = goingLeft;
 
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            //print("right arrow pressed");
-
-            //this.transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
-
             transform.position += Vector3.right * speed * Time.deltaTime;
+
+            
+            foll.x = goingRight;
+            folr.x = goingRight;
         }
+        else
+        {
+            foll.x = straight;
+            folr.x = straight;
+
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
