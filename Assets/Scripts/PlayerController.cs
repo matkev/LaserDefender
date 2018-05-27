@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour {
     public ParticleSystem leftThruster;
     public ParticleSystem rightThruster;
 
+    public GameObject explosion;
+
 
 
     public float health = 100000f;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour {
         LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
         levelManager.LoadLevel("Lose");
-
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
 

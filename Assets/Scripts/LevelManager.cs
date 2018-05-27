@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -28,7 +29,7 @@ public class LevelManager : MonoBehaviour {
     {
         print(Application.loadedLevel + 1);
 
-        Application.LoadLevel(Application.loadedLevel + 1);
+       SceneManager.LoadScene(Application.loadedLevel + 1);
     }
 
     /*

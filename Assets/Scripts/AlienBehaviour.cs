@@ -17,8 +17,8 @@ public class AlienBehaviour : MonoBehaviour {
 
     private ScoreKeeper scoreKeeper;
 
-    
 
+    public GameObject explosion;
 
     // Use this for initialization
     void Start () {
@@ -65,6 +65,7 @@ public class AlienBehaviour : MonoBehaviour {
     {
         scoreKeeper.Score(scoreValue);
         AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
