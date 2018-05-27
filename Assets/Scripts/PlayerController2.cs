@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController2 : MonoBehaviour {
 
 
     public float speed = 12f;
@@ -61,28 +61,28 @@ public class PlayerController : MonoBehaviour {
         LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
         Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
 
         //levelManager.LoadLevel("Lose");
-        Lose();
+        StartCoroutine(Wait());
 
-
-
+        Destroy(gameObject);
+        
     }
 
-    private void Lose()
+    private void Restart()
     {
         print("loading wait");
-        StartCoroutine("Wait");
+        StartCoroutine(Wait());
         print("wait loaded");
     }
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1);
-        print("about to load lose");
+        Debug.Log("before waiting");
+        yield return new WaitForSeconds(3f);
+        Debug.Log("about to load lose");
         SceneManager.LoadScene("Lose");
-        print("loaded lose");
+        Debug.Log("loaded lose");
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -96,7 +96,8 @@ public class PlayerController : MonoBehaviour {
             missile.Hit();
             if (health <= 0)
             {
-                Die();            }
+                Die();
+            }
         }
     }
 
